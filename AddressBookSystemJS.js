@@ -2,11 +2,12 @@
 
 {
     // To ensure whether Valid Contacts are added...
+    const prompt = require('prompt-sync')();
     const NAME_PATTERN = RegExp('^[A-Z]{1}[a-zA-Z]{2,}$');
     const ADDRESS_CITY_STATE_PATTERN = RegExp('^[A-Za-z]{4,}$');
     const PINCODE_PATTERN = RegExp('^[1-9]{1}[0-9]{2}\s{0,1}[0-9]{3}$');
     const PHONE_NUMBER_PATTERN = RegExp('^[6-9]{1}[0-9]{9}$');
-    const EMAIL_PATTERN = RegExp('^[a-zA-Z0-9-]+(.[_A-Za-z0-9-+.]+)+@[a-zA-Z0-9]+(.[A-Za-z0-9]+)+.[a-z]{2,4}$');
+    const EMAIL_PATTERN = RegExp('^[a-zA-Z0-9-]+(.[_A-Za-z0-9-+.]+)+@[a-zA-Z0-9]+(.[A-Za-z0-9]+)+.[a-zA-Z]{2,4}$');
     class Contact {
         //Property
         firstName;
@@ -58,10 +59,35 @@
                 ", State: " + this.state + ", Zip: " + this.zip + ", Phone Number: " + this.phoneNumber + ", Email: " + this.email;
         }
     }
-    try {
-        let contact = new Contact("Sourabh", "Harale", "Gandhari", "Hyderabad", "Telangana", 503114, 9494118273, "hsourabh@gmail.com");
-        console.log((contact.toString()));
-    } catch (error) {
-        console.error(error);
+    //array to store contacts
+    let addressBookArray = new Array();
+    //add contacts to address book
+    function addContactsToAddressBook() {
+        let firstName = prompt("Enter First Name: ");
+        let lastName = prompt("Enter Last Name: ");
+        let address = prompt("Enter Address: ");
+        let city = prompt("Enter City Name: ");
+        let state = prompt("Enter State Name: ");
+        let zipCode = prompt("Enter Zip Code: ");
+        let phoneNumber = prompt("Enter Phone Number: ");
+        let emailId = prompt("Enter Email id: ");
+        try {
+            let contact = new Contact(firstName, lastName, address, city, state, zipCode, phoneNumber, emailId);
+            addressBookArray.push(contact);
+            console.log((contact.toString()));
+        }
+        catch (e) {
+            console.error(e);
+        }
     }
+
+    console.log("Welcome To AddressBook Program through JavaScript");
+    let choice = 0;
+    //calling addContactsToAddressBook method to add new contact to Array
+    do {
+        choice = prompt("Enter \n1 : Add contact \n0 : Exit: ");
+        if (choice == 1) {
+            addContactsToAddressBook();
+        }
+    } while (choice != 0);
 }

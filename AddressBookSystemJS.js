@@ -81,13 +81,42 @@
         }
     }
 
+    //view All Contacts available in Array
+    let viewContacts = () => {
+        console.log(addressBookArray.toString() + "\n");
+    }
+    // find existing contact person using their name and edit it
+    let editContact = () => {
+        console.log(addressBookArray.length);
+        if (addressBookArray.length == 0) {
+            console.log("No contacts Available in Array");
+            return;
+        }
+        let firstNameEdit = prompt("Enter the first name whose contact you want to edit: ");
+        let newFirstName = prompt("Enter new first name: ");
+        let checkFirstName = addressBookArray.find((contact) => contact.firstName == firstNameEdit);
+        if (checkFirstName == undefined) {
+            console.log("No contact with given first name");
+            return;
+        }
+        else {
+            addressBookArray.find((contact) => contact.firstName == firstNameEdit).firstName = newFirstName;
+        }
+    }
+
     console.log("Welcome To AddressBook Program through JavaScript");
-    let choice = 0;
-    //calling addContactsToAddressBook method to add new contact to Array
+    let userChoice = 0;
+    //calling add to addressbook method
     do {
-        choice = prompt("Enter \n1 : Add contact \n0 : Exit: ");
-        if (choice == 1) {
+        userChoice = prompt("Enter \n1 : Add contact \n2 : Edit a Contact \n3 : View all Contacts \n0 : Exit:");
+        if (userChoice == 1) {
             addContactsToAddressBook();
         }
-    } while (choice != 0);
+        if (userChoice == 2) {
+            editContact();
+        }
+        if (userChoice == 3) {
+            viewContacts();
+        }
+    } while (userChoice != 0);
 }

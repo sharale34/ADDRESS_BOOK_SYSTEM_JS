@@ -155,14 +155,23 @@
     let countOfContactsByState = () => {
         let stateName = prompt("Enter state name: ");
         let countOfcontactsByState = addressBookArray.filter(contact => contact.state == stateName).reduce((totalCount, contact) => totalCount += 1, 0);
-        console.log("Total number of contacts in state : "+stateName + " is equal to : " + countOfcontactsByState);
+        console.log("Total number of contacts in state : " + stateName + " is equal to : " + countOfcontactsByState);
+    }
+
+    // To sort the entries in the address book alphabetically by Person’s name
+    let sortContactByName = () => {
+        return addressBookArray.sort((a, b) => {
+            return ((a.firstName > b.firstName) ? 1 : -1)
+        });
     }
 
     console.log("Welcome To AddressBook Program through JavaScript");
     let userChoice = 0;
     //calling add to addressbook method
     do {
-        userChoice = prompt("Enter \n1 : Add contact \n2 : Edit a Contact \n3 : Delete a contact \n4 : Number of contacts \n5 : To search Person in City or State \n6 : To view Persons by State \n7 : To get no.of contact persons by state \n8 : View all Contacts \n0 : Exit:");
+        userChoice = prompt("Enter \n1 : Add contact \n2 : Edit a Contact \n3 : Delete a contact \n4 : Number of contacts" +
+            "\n5 : To search Person in City or State \n6 : To view Persons by State \n7 : To get no.of contact persons by state" +
+            "\n8 : Sort contact by First Name \n9 : View all Contacts \n0 : Exit:");
         if (userChoice == 1) {
             addContactsToAddressBook();
         }
@@ -185,6 +194,9 @@
             countOfContactsByState();
         }
         if (userChoice == 8) {
+            sortContactByName();
+        }
+        if (userChoice == 9) {
             viewContacts();
         }
     } while (userChoice != 0);

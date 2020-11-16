@@ -65,11 +65,6 @@
     function addContactsToAddressBook() {
         let firstName = prompt("Enter First Name: ");
         let lastName = prompt("Enter Last Name: ");
-
-        if (addressBookArray.find((contact) => (contact.firstName == firstName && contact.lastName == lastName))) {
-            console.log("Warning!!! No Duplicate Entry of the same person in the Address Book");
-            return;
-        }
         let address = prompt("Enter Address: ");
         let city = prompt("Enter City Name: ");
         let state = prompt("Enter State Name: ");

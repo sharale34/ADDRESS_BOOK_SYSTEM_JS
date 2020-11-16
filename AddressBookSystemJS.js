@@ -141,11 +141,21 @@
         console.log("First contact found in given state: \n" + serachcontactByState);
     }
 
+    // To view Persons by State
+    let viewContactInState = () => {
+        let stateName = prompt("Enter state name: ");
+        let viewcontactsByState = addressBookArray.filter(contact => contact.state == stateName).map(contact => contact);
+        if (viewcontactsByState.length > 0)
+            console.log("Contacts found in given state: \n" + viewcontactsByState.toString());
+        else
+            console.log("No contacts found for given state");
+    }
+
     console.log("Welcome To AddressBook Program through JavaScript");
     let userChoice = 0;
     //calling add to addressbook method
     do {
-        userChoice = prompt("Enter \n1 : Add contact \n2 : Edit a Contact \n3 : Delete a contact \n4 : Number of contacts \n5 : To search Person in City or State \n6 : View all Contacts \n0 : Exit:");
+        userChoice = prompt("Enter \n1 : Add contact \n2 : Edit a Contact \n3 : Delete a contact \n4 : Number of contacts \n5 : To search Person in City or State \n6 : To view Persons by State \n7 : View all Contacts \n0 : Exit:");
         if (userChoice == 1) {
             addContactsToAddressBook();
         }
@@ -162,6 +172,9 @@
             searchContactInState();
         }
         if (userChoice == 6) {
+            viewContactInState();
+        }
+        if (userChoice == 7) {
             viewContacts();
         }
     } while (userChoice != 0);

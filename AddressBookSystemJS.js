@@ -104,11 +104,30 @@
         }
     }
 
+    // To find a person with name delete it from the array
+    let deleteContact = () => {
+        if (addressBookArray.length == 0) {
+            console.log("No contacts Available in Array");
+            return;
+        }
+        let firstNamedelete = prompt("Enter the first name whose contact you want to delete: ");
+        // returns the value of the element that passes the given condition
+        let check = addressBookArray.find((contact) => contact.firstName == firstNamedelete);
+        if (check == undefined) {
+            console.log("No contact with given first name");
+            return;
+        }
+        else {
+            //Filtering out contacts which doesnt matches with given FirstName
+            addressBookArray = addressBookArray.filter((contact) => contact.firstName != firstNamedelete);
+        }
+    }
+
     console.log("Welcome To AddressBook Program through JavaScript");
     let userChoice = 0;
     //calling add to addressbook method
     do {
-        userChoice = prompt("Enter \n1 : Add contact \n2 : Edit a Contact \n3 : View all Contacts \n0 : Exit:");
+        userChoice = prompt("Enter \n1 : Add contact \n2 : Edit a Contact \n3 : Delete a contact \n4 : View all Contacts \n0 : Exit:");
         if (userChoice == 1) {
             addContactsToAddressBook();
         }
@@ -116,6 +135,9 @@
             editContact();
         }
         if (userChoice == 3) {
+            deleteContact();
+        }
+        if (userChoice == 4) {
             viewContacts();
         }
     } while (userChoice != 0);

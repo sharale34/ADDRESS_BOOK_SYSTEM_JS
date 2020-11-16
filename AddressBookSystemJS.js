@@ -151,11 +151,18 @@
             console.log("No contacts found for given state");
     }
 
+    //To get number contact persons i.e. count by City or State
+    let countOfContactsByState = () => {
+        let stateName = prompt("Enter state name: ");
+        let countOfcontactsByState = addressBookArray.filter(contact => contact.state == stateName).reduce((totalCount, contact) => totalCount += 1, 0);
+        console.log("Total number of contacts in state : "+stateName + " is equal to : " + countOfcontactsByState);
+    }
+
     console.log("Welcome To AddressBook Program through JavaScript");
     let userChoice = 0;
     //calling add to addressbook method
     do {
-        userChoice = prompt("Enter \n1 : Add contact \n2 : Edit a Contact \n3 : Delete a contact \n4 : Number of contacts \n5 : To search Person in City or State \n6 : To view Persons by State \n7 : View all Contacts \n0 : Exit:");
+        userChoice = prompt("Enter \n1 : Add contact \n2 : Edit a Contact \n3 : Delete a contact \n4 : Number of contacts \n5 : To search Person in City or State \n6 : To view Persons by State \n7 : To get no.of contact persons by state \n8 : View all Contacts \n0 : Exit:");
         if (userChoice == 1) {
             addContactsToAddressBook();
         }
@@ -175,6 +182,9 @@
             viewContactInState();
         }
         if (userChoice == 7) {
+            countOfContactsByState();
+        }
+        if (userChoice == 8) {
             viewContacts();
         }
     } while (userChoice != 0);

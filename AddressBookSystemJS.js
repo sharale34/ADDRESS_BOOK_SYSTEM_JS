@@ -165,13 +165,26 @@
         });
     }
 
+     //To sort the entries in the address book alphabetically by State
+     let sortContactByState = () => {
+        return addressBookArray.sort((a, b) => {
+            return ((a.state > b.state) ? 1 : -1)
+        });
+    }
+    //To sort the entries in the address book by ZipCode
+    let sortContactByZip = () => {
+        return addressBookArray.sort((a, b) => {
+            return ((a.zip > b.zip) ? 1 : -1)
+        });
+    }
+
     console.log("Welcome To AddressBook Program through JavaScript");
     let userChoice = 0;
     //calling add to addressbook method
     do {
         userChoice = prompt("Enter \n1 : Add contact \n2 : Edit a Contact \n3 : Delete a contact \n4 : Number of contacts" +
             "\n5 : To search Person in City or State \n6 : To view Persons by State \n7 : To get no.of contact persons by state" +
-            "\n8 : Sort contact by First Name \n9 : View all Contacts \n0 : Exit:");
+            "\n8 : Sort contact by First Name \n9 : Sort Contact by State \n10 : Sort Contact by zip \n11 : View all Contacts \n0 : Exit:");
         if (userChoice == 1) {
             addContactsToAddressBook();
         }
@@ -197,6 +210,12 @@
             sortContactByName();
         }
         if (userChoice == 9) {
+            sortContactByState();
+        }
+        if (userChoice == 10) {
+            sortContactByZip();
+        }
+        if (userChoice == 11) {
             viewContacts();
         }
     } while (userChoice != 0);

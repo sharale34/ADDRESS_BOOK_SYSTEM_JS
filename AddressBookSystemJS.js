@@ -123,11 +123,16 @@
         }
     }
 
+    //Find total number of contacts
+    let countOfContacts = () => {
+        console.log("Total Number of contacts are : " + addressBookArray.reduce((totalCount, contact) => totalCount += 1, 0));
+    }
+
     console.log("Welcome To AddressBook Program through JavaScript");
     let userChoice = 0;
     //calling add to addressbook method
     do {
-        userChoice = prompt("Enter \n1 : Add contact \n2 : Edit a Contact \n3 : Delete a contact \n4 : View all Contacts \n0 : Exit:");
+        userChoice = prompt("Enter \n1 : Add contact \n2 : Edit a Contact \n3 : Delete a contact \n4 : Number of contacts \n5 : View all Contacts \n0 : Exit:");
         if (userChoice == 1) {
             addContactsToAddressBook();
         }
@@ -138,6 +143,9 @@
             deleteContact();
         }
         if (userChoice == 4) {
+            countOfContacts();
+        }
+        if (userChoice == 5) {
             viewContacts();
         }
     } while (userChoice != 0);

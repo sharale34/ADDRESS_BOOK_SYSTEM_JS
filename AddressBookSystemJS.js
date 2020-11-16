@@ -65,6 +65,11 @@
     function addContactsToAddressBook() {
         let firstName = prompt("Enter First Name: ");
         let lastName = prompt("Enter Last Name: ");
+
+        if (addressBookArray.find((contact) => (contact.firstName == firstName && contact.lastName == lastName))) {
+            console.log("Warning!!! No Duplicate Entry of the same person in the Address Book");
+            return;
+        }
         let address = prompt("Enter Address: ");
         let city = prompt("Enter City Name: ");
         let state = prompt("Enter State Name: ");
@@ -128,11 +133,19 @@
         console.log("Total Number of contacts are : " + addressBookArray.reduce((totalCount, contact) => totalCount += 1, 0));
     }
 
+    //To search Person in a particular City or State 
+    let searchContactInState = () => {
+        let stateName = prompt("Enter state name: ");
+        let firstName = prompt("Enter contact first name: ")
+        let serachcontactByState = addressBookArray.filter(contact => contact.state == stateName).find(contact => contact.firstName == firstName);
+        console.log("First contact found in given state: \n" + serachcontactByState);
+    }
+
     console.log("Welcome To AddressBook Program through JavaScript");
     let userChoice = 0;
     //calling add to addressbook method
     do {
-        userChoice = prompt("Enter \n1 : Add contact \n2 : Edit a Contact \n3 : Delete a contact \n4 : Number of contacts \n5 : View all Contacts \n0 : Exit:");
+        userChoice = prompt("Enter \n1 : Add contact \n2 : Edit a Contact \n3 : Delete a contact \n4 : Number of contacts \n5 : To search Person in City or State \n6 : View all Contacts \n0 : Exit:");
         if (userChoice == 1) {
             addContactsToAddressBook();
         }
@@ -146,6 +159,9 @@
             countOfContacts();
         }
         if (userChoice == 5) {
+            searchContactInState();
+        }
+        if (userChoice == 6) {
             viewContacts();
         }
     } while (userChoice != 0);
